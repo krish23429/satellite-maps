@@ -15,7 +15,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir _site && unzip -q satellite-maps-website.zip -d _site && touch _site/.nojekyll
+      - run: mkdir _site && for z in *.zip; do unzip -q -o "$z" -d _site; done && touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
